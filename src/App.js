@@ -17,7 +17,7 @@ function App() {
         <Route path="/" component={Home} exact/>
         <Route path="/page/Mashriq" component={Mashriq} />
         <Route path="/page/JuniorCategory" component={JuniorCategory} />
-      </Switch>
+       </Switch>
     </div>
   );
 }

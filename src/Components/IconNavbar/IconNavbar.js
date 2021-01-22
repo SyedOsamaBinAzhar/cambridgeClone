@@ -2,11 +2,12 @@ import React from 'react'
 import './IconNavbar.css'
 
 import Vector from "../../Assets/Vector.png"
+import {connect} from "react-redux";
 
+import displayLoginComp from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 
 const IconNavbar = () => {
    
- 
 
     return (
         <div className="iconNavBarContainerWrapper">
@@ -32,5 +33,7 @@ const IconNavbar = () => {
         </div>
     )
 }
+
+
 
 export default IconNavbar
