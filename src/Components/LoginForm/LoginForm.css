@@ -1,0 +1,50 @@
+.loginFormDiv{
+    display: grid;
+    grid-template-columns: 100%;
+    /* background-color: orangered; */
+    background-color: #fff;
+    padding: 5%;
+    border-top: 1px solid black;
+}
+.loginForm p{
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5%;
+    font-size: 0.8rem;
+}
+
+.inputFieldsStyling{
+    width: 95%;
+    height: 30px;
+    margin-top: 2%;
+    font-size: 0.7rem;
+    padding-left: 4px;
+    outline: none;
+}
+.loginFormBtnsStyling{
+    width: 95%;
+    margin-top: 2%;
+    font-size: 0.8rem;
+    margin-top: 4%;
+    height: 35px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+}
+.forgotYourPassword{
+    padding-left: 20%;
+    font-size: 0.8rem;
+    margin-top: 5%;
+    height: 30px;
+    font-weight: 200;
+    font-family: 'Roboto', sans-serif;
+}
+.createAnAccount{
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.loginBtn{
+        background-color: white;
+        color: black;
+    
+}

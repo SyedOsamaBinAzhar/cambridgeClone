@@ -1,0 +1,115 @@
+.iconNavBarContainerWrapper{
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    display: grid;
+grid-template-columns:20% 60% 20%;
+grid-template-areas: "cambridgeMashriqJuniorCont cambridgeLogoCont searchCartCont";
+    font-family: 'Roboto', sans-serif;
+}
+.cambridgeMashriqJuniorCont{
+    grid-area: cambridgeMashriqJuniorCont;
+    background-color: sandybrown;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "cambridgeBtn mashriqBtn juniorBtn";
+}
+.cambridgeBtn{
+    grid-area: cambridgeBtn;
+    /* background-color: blue; */
+  background-color: #fff;
+
+  cursor: pointer;
+  font-size: 0.9rem;
+
+
+}
+.mashriqBtn{
+    grid-area: mashriqBtn;
+    /* background-color: brown; */
+  background-color: #fff;
+
+    cursor: pointer;
+  font-size: 0.9rem;
+
+
+}
+.juniorBtn{
+    grid-area: juniorBtn;
+    /* background-color: chartreuse; */
+    background-color: #fff;
+
+    cursor: pointer;
+    font-size: 0.9rem;
+
+}
+.cambridgeLogoCont{
+    grid-area: cambridgeLogoCont;
+    /* background-color: seagreen; */
+  background-color: #fff;
+
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-areas: ". cambridgeLogoDiv .";
+}
+.cambridgeLogoDiv{
+    grid-area: cambridgeLogoDiv;
+    /* background-color: coral; */
+  cursor: pointer;
+
+}
+.searchCartCont{
+    grid-area: searchCartCont;
+    /* background-color: slateblue; */
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-areas: "searchBarDiv currencyDiv loginLogoDiv cartLogoDiv";
+    font-family: 'Roboto', sans-serif;
+
+}
+.searchBarDiv{
+    grid-area: searchBarDiv;
+    /* background-color: crimson; */
+  cursor: pointer;
+  background-color: #fff;
+
+
+}
+.cartLogoDiv{
+    grid-area: cartLogoDiv;
+    background-color: cornflowerblue;
+  cursor: pointer;
+  color: lightslategrey;
+  background-color: #fff;
+
+
+}
+.loginLogoDiv{
+    grid-area: loginLogoDiv;
+    background-color: cyan;
+    cursor: pointer;
+  color: lightslategrey;
+  background-color: #fff;
+
+
+}
+.currencyDiv{
+    grid-area: currencyDiv;
+    background-color: darkblue;
+  cursor: pointer;
+  background-color: #fff;
+  color: lightslategrey;
+
+}
+.navIconsSize{
+    font-size: 0.9rem;
+  color: lightslategrey;
+}
+.searchField{
+    /* padding: 0.5rem; */
+    width: 100px;
+  color: lightslategrey;
+  outline: none;
+
+}
+

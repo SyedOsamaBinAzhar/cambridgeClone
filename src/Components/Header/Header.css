@@ -1,0 +1,18 @@
+.number{
+    color: red;
+}
+.header a{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+.header a:hover{
+    color: red;
+}
+.header{
+    background-color: #fff;
+}
+.redColorHover:hover{
+color: red;
+cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.navBar{
+    display: grid;
+    /* background-color: rosybrown; */
+    grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 20%;
+    grid-template-areas: ". formalShirt casualShirts jackets blazers sweaters trousers .";
+
+}
+.formalShirt{
+    grid-area: formalShirt;
+    /* background-color: limegreen; */
+    transition: 1s ease-in-out;
+}
+.casualShirts{
+    grid-area: casualShirts;
+    /* background-color: magenta; */
+}
+.jackets{
+    grid-area: jackets;
+    /* background-color: maroon; */
+}
+.blazers{
+    grid-area: blazers;
+    /* background-color: mediumpurple; */
+}
+.sweaters{
+    grid-area: sweaters;
+    /* background-color: olive; */
+}
+.trousers{
+    grid-area: trousers;
+    /* background-color: orangered; */
+}
+.line{
+    height: 0.5px;
+    width: 60px;
+    background-color: black;
+}
+
