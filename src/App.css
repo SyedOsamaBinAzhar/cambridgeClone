@@ -8,6 +8,9 @@
   justify-content: center;
   align-items: center;
 }
+html{
+  font-size: 72.5%;
+}
 .flex-col{
   display: flex;
   flex-flow: column;
@@ -23,4 +26,7 @@
 .fontSizeOneRem{
   font-size: 0.7rem;
   font-weight: 500;
+}
+.fontFam{
+  font-family: 'Roboto', sans-serif;
 }

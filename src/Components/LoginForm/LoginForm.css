@@ -1,10 +1,9 @@
 .loginFormDiv{
     display: grid;
     grid-template-columns: 100%;
-    /* background-color: orangered; */
-    background-color: #fff;
     padding: 5%;
     border-top: 1px solid black;
+    transition: 1s ease-in-out;
 }
 .loginForm p{
     font-family: 'Roboto', sans-serif;
@@ -40,11 +39,30 @@
 }
 .createAnAccount{
     background-color: black;
-    color: white;
+    /* color: white; */
     font-family: 'Roboto', sans-serif;
+    border: 1px solid black;
+    text-decoration: none;
 }
+/* .createAnAccount:hover{
+    background-color: white;
+    transition: 0.5s ease-in-out;
+}
+
+.createAnAccount a:hover{
+    color: black;
+} */
 .loginBtn{
         background-color: white;
         color: black;
+        border: 1px solid black;
     
 }
+.createAnAccount a{
+    color: white;
+}
+/* .loginBtn:hover{
+    background-color: black;
+    color: white;
+    transition: 0.5s ease-in-out;
+} */

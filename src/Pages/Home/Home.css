@@ -38,14 +38,18 @@
     grid-area: Navbar;
     /* background-color: red; */
 }
+.homeNewsImage{
+    grid-area: homeNewsImage;
+}
 
 .loginForm{
+    transition: 1s ease-in-out;
     position: absolute;
     z-index: 3;
     height: 100vh;
     width: 350px;
     right: 0%;
-    display: none;
+    display: grid;
     /* Set display grid on click */
     grid-template-rows: 18vh 82vh;
     grid-template-areas: "loginHeader"
@@ -55,10 +59,7 @@
 .loginHeader{
     position: relative;
     grid-area: loginHeader;
-    /* background-color: blueviolet; */
     background-color: #fff;
-
-
 }
 .loginHeader h1{
     position: absolute;
@@ -82,12 +83,4 @@
     /* background-color: brown; */
     background-color: #fff;
 
-}
-.homeNewsImage{
-    grid-area: homeNewsImage;
-    /* background-color: blue; */
-     /* width: 100%;
-    height: 100%;  */
-    /* background-image: url("/src/Assets/WinterClearanceSale.jpg");
-    background-size: cover; */
 }

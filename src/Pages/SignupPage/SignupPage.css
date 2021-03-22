@@ -1,0 +1,50 @@
+.signupContWrapper{
+    display: grid;
+    position: relative;
+    grid-template-columns: minmax(0rem,1fr) minmax(min-content,1920px) minmax(0rem,1fr);
+    grid-template-rows: 5vh 10vh 6vh 15vh 40vh;
+    box-sizing: border-box;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    grid-template-areas: ". headerDiv ."
+                         ". iconNavbar ."
+                        ". Navbar ."
+                        ". headingRow ."
+                        ". signupFormRow ."; 
+}
+
+.headerDiv{
+    grid-area: headerDiv;
+/* background-color: cornflowerblue; */
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+justify-content: flex-end;
+border-bottom:1px solid black;
+font-family: 'Roboto', sans-serif;
+}
+.iconNavbar{
+    grid-area: iconNavbar;
+    background-color: aquamarine;
+}
+.Navbar{
+    grid-area: Navbar;
+    /* background-color: red; */
+}
+.headingRow{
+    grid-area: headingRow;
+    border-bottom: 1px solid lightgray;
+    border-top:  1px solid lightgray;
+    justify-content: flex-start;
+    /* background-color: blue; */
+}
+.headingRow h1{
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding-left: 2rem;
+}
+.signupFormRow{
+    grid-area: signupFormRow;
+}

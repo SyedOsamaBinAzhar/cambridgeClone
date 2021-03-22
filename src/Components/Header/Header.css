@@ -1,5 +1,6 @@
 .number{
     color: red;
+
 }
 .header a{
     text-decoration: none;
@@ -11,6 +12,7 @@
 }
 .header{
     background-color: #fff;
+    font-size: 0.7rem;
 }
 .redColorHover:hover{
 color: red;

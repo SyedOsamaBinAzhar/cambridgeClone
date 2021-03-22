@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './IconNavbar.css'
 
 import Vector from "../../Assets/Vector.png"
 import {connect} from "react-redux";
 
-import displayLoginComp from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
+import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 
-const IconNavbar = () => {
-   
+
+
+const IconNavbar = ({displayLoginComp}) => {
+
+    const [loginDivStatus, SetLoginDivStatus] = useState(false)
+     
+    useEffect(() => {
+        handleLoginDiv()
+
+        return () => {
+        
+        }
+    }, [loginDivStatus])
+
+    var handleLoginDiv=()=>{
+        displayLoginComp(loginDivStatus)
+    }
 
     return (
         <div className="iconNavBarContainerWrapper">
@@ -27,7 +42,7 @@ const IconNavbar = () => {
                 <div className="searchCartCont flex">
                     <div className="searchBarDiv heightWidthHundredPercent flex navIconsSize"><input className="searchField" type="text" placeholder="Search"></input><i class="fas fa-search searchIcon"></i></div>
                     <div className="currencyDiv heightWidthHundredPercent flex navIconsSize">PKR</div>    
-                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i class="fas fa-user"></i></div>
+                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i class="fas fa-user" onClick={()=>SetLoginDivStatus(!loginDivStatus)}></i></div>
                     <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize"><i class="fas fa-shopping-cart"></i></div>    
                 </div> 
         </div>
@@ -35,5 +50,7 @@ const IconNavbar = () => {
 }
 
 
-
-export default IconNavbar
+var actions = {
+    displayLoginComp
+}
+export default connect(null,actions)(IconNavbar)
