@@ -5,25 +5,32 @@ import Vector from "../../Assets/Vector.png"
 import {connect} from "react-redux";
 
 import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
+import {openCartDiv} from "../../Redux/CartDivState/CartDivStateActions" 
 
 
-
-const IconNavbar = ({displayLoginComp}) => {
+const IconNavbar = ({displayLoginComp,openCartDiv}) => {
 
     const [loginDivStatus, SetLoginDivStatus] = useState(false)
+    const [cartDivStatus, SetCartDivStatus] = useState(false)
+    
+    
      
     useEffect(() => {
         handleLoginDiv()
-
+        handleCartDiv()
         return () => {
         
         }
-    }, [loginDivStatus])
+    }, [loginDivStatus,cartDivStatus])
 
     var handleLoginDiv=()=>{
         displayLoginComp(loginDivStatus)
     }
+    var handleCartDiv=() => {
+        openCartDiv(cartDivStatus)
+    }
 
+ 
     return (
         <div className="iconNavBarContainerWrapper">
                          <div className="cambridgeMashriqJuniorCont flex"> 
@@ -40,10 +47,10 @@ const IconNavbar = ({displayLoginComp}) => {
                 </div>
 
                 <div className="searchCartCont flex">
-                    <div className="searchBarDiv heightWidthHundredPercent flex navIconsSize"><input className="searchField" type="text" placeholder="Search"></input><i class="fas fa-search searchIcon"></i></div>
+                    <div className="searchBarDiv heightWidthHundredPercent flex navIconsSize"><input className="searchField" type="text" placeholder="Search"></input><i className="fas fa-search searchIcon"></i></div>
                     <div className="currencyDiv heightWidthHundredPercent flex navIconsSize">PKR</div>    
-                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i class="fas fa-user" onClick={()=>SetLoginDivStatus(!loginDivStatus)}></i></div>
-                    <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize"><i class="fas fa-shopping-cart"></i></div>    
+                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i className="fas fa-user" onClick={()=>SetLoginDivStatus(!loginDivStatus)}></i></div>
+                    <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize"><i className="fas fa-shopping-cart" onClick={()=>SetCartDivStatus(!cartDivStatus)}></i></div>    
                 </div> 
         </div>
     )
@@ -51,6 +58,7 @@ const IconNavbar = ({displayLoginComp}) => {
 
 
 var actions = {
-    displayLoginComp
+    displayLoginComp,
+    openCartDiv
 }
 export default connect(null,actions)(IconNavbar)

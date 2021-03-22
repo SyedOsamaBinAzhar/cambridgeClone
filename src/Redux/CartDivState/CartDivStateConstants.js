@@ -1,0 +1,1 @@
+export var CART_DIV_STATUS = "CART_DIV_STATUS";
