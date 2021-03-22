@@ -7,19 +7,41 @@ import LoginForm from "../../Components/LoginForm/LoginForm"
 import HomeNewsContent from "../../Components/HomeNewsContent/HomeNewsContent"
 import { connect } from 'react-redux';
 
+import {openCartDiv} from "../../Redux/CartDivState/CartDivStateActions"
+import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 // import {closeBtnAction} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 
-const Home = (props) => {
-   
+const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) => {
+
+    var [cartBoxStatus,setCartBoxStatus] = useState(cartDivStateReducer)
+    var [loginComp,setLoginComp] = useState(openLoginBox)
+
+
+    useEffect(() => {
+        // cartWindowHandler()
+        loginWindowHandler()
+        return () => {
+            
+        }
+    }, [cartBoxStatus,loginComp])
+
+    
+    var cartWindowHandler = () => {
+        openCartDiv(cartBoxStatus)
+    }
+    var loginWindowHandler = () => {
+        displayLoginComp(loginComp)
+
+    }
 
     return (
         <div className="homeContWrapper">
             {
-                props.openLoginBox?
+                openLoginBox?
             <div className="loginForm">
                 <div className="loginHeader ">
                     <h1>CUSTOMER LOGIN</h1>
-                    <h5 className="cursorPointer">CLOSE</h5>
+                    <button className="cursorPointer" onClick={()=>{setLoginComp(!openLoginBox)}}>CLOSE</button>
                 </div>
                 <div className="loginContent">
                     <LoginForm/>
@@ -27,6 +49,25 @@ const Home = (props) => {
             </div>
             :
             null
+            }
+            {
+                cartDivStateReducer?
+                <div className="cartWindowBox">
+                <div className="headingRow">
+                    <button onClick={() => {console.log("hi")}}>CLOSE</button>
+                    <h3 className="fontFam">SHOPPING CART</h3>
+                </div>
+                <div className="cartContentRow">
+                    <div>
+
+                        <button className="continueShoppingBtn">CONTINUE SHOPPING</button>
+                    </div>
+                    
+                </div>
+        
+
+            </div>
+            : null
             }
 
             <div className="headerDiv">
@@ -49,13 +90,15 @@ const Home = (props) => {
     )
 }
 
-var mapStateToProps = (state) => {
+var mapState = (state) => {
     return {
-        openLoginBox: state.UiUxFunctionality.openLoginBox
+        openLoginBox: state.UiUxFunctionality.openLoginBox,
+        cartDivStateReducer: state.cartDivStateReducer
     }
 }
 
-// var actions={
-//     closeBtnAction,
-// }
-export default connect(mapStateToProps,null)(Home)
+var actions={
+    openCartDiv,
+    displayLoginComp
+}
+export default connect(mapState,actions)(Home)

@@ -48,7 +48,10 @@ const IconNavbar = ({displayLoginComp,openCartDiv}) => {
 
                 <div className="searchCartCont flex">
                     <div className="searchBarDiv heightWidthHundredPercent flex navIconsSize"><input className="searchField" type="text" placeholder="Search"></input><i className="fas fa-search searchIcon"></i></div>
-                    <div className="currencyDiv heightWidthHundredPercent flex navIconsSize">PKR</div>    
+                    <div className="currencyDiv heightWidthHundredPercent flex navIconsSize">
+                    
+                        
+                    </div>    
                     <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i className="fas fa-user" onClick={()=>SetLoginDivStatus(!loginDivStatus)}></i></div>
                     <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize"><i className="fas fa-shopping-cart" onClick={()=>SetCartDivStatus(!cartDivStatus)}></i></div>    
                 </div> 
