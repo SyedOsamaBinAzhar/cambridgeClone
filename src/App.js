@@ -10,6 +10,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import TestPage from './Pages/TestPage/TestPage';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/page/Mashriq" component={Mashriq} />
         <Route path="/page/JuniorCategory" component={JuniorCategory} />
         <Route path="/page/Signup" component={SignupPage} />
+        <Route path="/page/Test" component={TestPage} />
+
 
        </Switch>
     </div>
