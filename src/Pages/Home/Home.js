@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import {openCartDiv} from "../../Redux/CartDivState/CartDivStateActions"
 import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
+import Footer from '../../Components/Footer/Footer';
 // import {closeBtnAction} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 
 const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) => {
@@ -84,6 +85,10 @@ const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) =
 
             <div className="homeNewsImage">
                 <HomeNewsContent/>
+            </div>
+            
+            <div className="footerRow">
+                <Footer/>
             </div>
 
         </div>

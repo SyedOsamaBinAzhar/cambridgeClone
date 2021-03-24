@@ -1,0 +1,68 @@
+.footer{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: "aboutCol infoCol connectWithUsCol subscribeCol";
+    /* background-color: blue; */
+    background-color: #fff;
+
+}
+.infoCol{
+    grid-area: infoCol;
+    /* background-color: red; */
+
+}
+.aboutCol{
+    grid-area: aboutCol;
+    /* background-color: peru; */
+    /* text-decoration: none; */
+    list-style: none;
+}
+.connectWithUsCol{
+    grid-area: connectWithUsCol;
+    /* background-color: purple; */
+}
+.subscribeCol{
+    grid-area: subscribeCol;
+    /* background-color: orange; */
+}
+.footer h3{
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+}
+.footer p{
+    font-size: 0.9rem;
+    font-weight: 600;
+    /* letter-spacing: 1px; */
+    color: rgb(105,105,105);
+    margin-top: 10px;
+}
+.formField{
+    width: 18rem;
+    height: 30px;
+    font-size: 1.3rem;
+    padding: 2px;
+    outline: none;
+    border: 1px solid black;
+}
+.subscribeBtn{
+    padding: 2px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    /* letter-spacing: 1px; */
+    color: rgb(105,105,105);
+}
+.footer h6{
+    position: absolute;
+    top: 80%;
+    left: 45%;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+
+}

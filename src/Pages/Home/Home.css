@@ -5,7 +5,7 @@
     display: grid;
     position: relative;
     grid-template-columns: minmax(0rem,1fr) minmax(min-content,1920px) minmax(0rem,1fr);
-    grid-template-rows: 5vh 10vh 6vh 85vh;
+    grid-template-rows: 5vh 10vh 6vh 85vh 60vh;
     /* background-color: chocolate; */
     box-sizing: border-box;
     padding-left: 2vw;
@@ -13,7 +13,8 @@
     grid-template-areas: ". headerDiv ."
                         ". iconNavbar ."
                         ". Navbar ."
-                        ". homeNewsImage .";
+                        ". homeNewsImage ."
+                        ". footerRow .";
 }
 .headerDiv{
     grid-area: headerDiv;
@@ -40,6 +41,10 @@
 }
 .homeNewsImage{
     grid-area: homeNewsImage;
+}
+.footerRow{
+    grid-area: footerRow;
+    background-color: brown;
 }
 
 .loginForm{
