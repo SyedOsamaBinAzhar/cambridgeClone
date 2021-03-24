@@ -1,8 +1,6 @@
 import React from 'react'
-import { storage } from '../../Firebase/Firebase'
 
 const Test = () => {
-    console.log(storage)
     return (
         <div>
             <form>
