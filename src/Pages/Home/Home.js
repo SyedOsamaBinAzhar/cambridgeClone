@@ -14,24 +14,18 @@ import Footer from '../../Components/Footer/Footer';
 
 const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) => {
 
-    var [cartBoxStatus,setCartBoxStatus] = useState(cartDivStateReducer)
-    var [loginComp,setLoginComp] = useState(openLoginBox)
 
 
     useEffect(() => {
-        // cartWindowHandler()
-        loginWindowHandler()
         return () => {
             
         }
-    }, [cartBoxStatus,loginComp])
+    }, [])
 
     
     var cartWindowHandler = () => {
-        openCartDiv(cartBoxStatus)
     }
     var loginWindowHandler = () => {
-        displayLoginComp(loginComp)
 
     }
 
@@ -42,7 +36,7 @@ const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) =
             <div className="loginForm">
                 <div className="loginHeader ">
                     <h1>CUSTOMER LOGIN</h1>
-                    <button className="cursorPointer" onClick={()=>{setLoginComp(!openLoginBox)}}>CLOSE</button>
+                    <button className="cursorPointer" onClick={()=>{displayLoginComp(!openLoginBox)}}>CLOSE</button>
                 </div>
                 <div className="loginContent">
                     <LoginForm/>
@@ -55,12 +49,11 @@ const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) =
                 cartDivStateReducer?
                 <div className="cartWindowBox">
                 <div className="headingRow">
-                    <button onClick={() => {console.log("hi")}}>CLOSE</button>
+                    <button onClick={() => {openCartDiv(!cartDivStateReducer)}}>CLOSE</button>
                     <h3 className="fontFam">SHOPPING CART</h3>
                 </div>
                 <div className="cartContentRow">
                     <div>
-
                         <button className="continueShoppingBtn">CONTINUE SHOPPING</button>
                     </div>
                     

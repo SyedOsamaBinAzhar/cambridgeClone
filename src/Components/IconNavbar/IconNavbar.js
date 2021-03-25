@@ -6,30 +6,12 @@ import {connect} from "react-redux";
 
 import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 import {openCartDiv} from "../../Redux/CartDivState/CartDivStateActions" 
+import { Link } from 'react-router-dom';
 
 
-const IconNavbar = ({displayLoginComp,openCartDiv}) => {
+const IconNavbar = ({displayLoginComp,openCartDiv,openLoginBox,cartDivStateReducer}) => {
 
-    const [loginDivStatus, SetLoginDivStatus] = useState(false)
-    const [cartDivStatus, SetCartDivStatus] = useState(false)
-    
-    
-     
-    useEffect(() => {
-        handleLoginDiv()
-        handleCartDiv()
-        return () => {
-        
-        }
-    }, [loginDivStatus,cartDivStatus])
-
-    var handleLoginDiv=()=>{
-        displayLoginComp(loginDivStatus)
-    }
-    var handleCartDiv=() => {
-        openCartDiv(cartDivStatus)
-    }
-
+  
  
     return (
         <div className="iconNavBarContainerWrapper">
@@ -49,14 +31,30 @@ const IconNavbar = ({displayLoginComp,openCartDiv}) => {
                 <div className="searchCartCont flex">
                     <div className="searchBarDiv heightWidthHundredPercent flex navIconsSize"><input className="searchField" type="text" placeholder="Search"></input><i className="fas fa-search searchIcon"></i></div>
                     <div className="currencyDiv heightWidthHundredPercent flex navIconsSize">
-                    
-                        
+                        <div className="btn-group">
+                          <button type="button" className="btn dropdown-toggle" style={{padding:0,backgroundColor:"#fff",outline:0}} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            PKR
+                          </button>
+                          <div className="dropdown-menu" style={{padding:0,outline:0,border:0}} >
+                            <Link className="dropdown-item" to="" style={{padding:0,width:"40px",overflowX:"hidden",border:"0.1px solid lightgrey",padding:"0 0.5rem"}}>USD</Link>
+                            <Link className="dropdown-item" to="" style={{padding:0,width:"40px",overflowX:"hidden",border:"0.1px solid lightgrey",padding:"0 0.5rem"}}>PKR</Link>
+                            <Link className="dropdown-item" to="" style={{padding:0,width:"40px",overflowX:"hidden",border:"0.1px solid lightgrey",padding:"0 0.5rem"}}>AED</Link>
+                          </div>
+                        </div>
                     </div>    
-                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize"><i className="fas fa-user" onClick={()=>SetLoginDivStatus(!loginDivStatus)}></i></div>
-                    <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize"><i className="fas fa-shopping-cart" onClick={()=>SetCartDivStatus(!cartDivStatus)}></i></div>    
+                    <div className="loginLogoDiv heightWidthHundredPercent flex  navIconsSize" onClick={()=>{displayLoginComp(!openLoginBox)}}><i className="fas fa-user" ></i></div>
+                    <div className="cartLogoDiv heightWidthHundredPercent flex navIconsSize" onClick={()=>{openCartDiv(!cartDivStateReducer)}}><i className="fas fa-shopping-cart" ></i></div>    
                 </div> 
         </div>
     )
+}
+
+
+var mapState = (state) => {
+    return {
+        openLoginBox: state.UiUxFunctionality.openLoginBox,
+        cartDivStateReducer: state.cartDivStateReducer
+    }
 }
 
 
@@ -64,4 +62,4 @@ var actions = {
     displayLoginComp,
     openCartDiv
 }
-export default connect(null,actions)(IconNavbar)
+export default connect(mapState,actions)(IconNavbar)
