@@ -11,6 +11,7 @@ import {
   Link
 } from "react-router-dom";
 import TestPage from './Pages/TestPage/TestPage';
+import Admin from './Pages/Admin/Admin';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/page/JuniorCategory" component={JuniorCategory} />
         <Route path="/page/Signup" component={SignupPage} />
         <Route path="/page/Test" component={TestPage} />
+        <Route path="/page/Admin" component={Admin} />
+
 
 
        </Switch>
