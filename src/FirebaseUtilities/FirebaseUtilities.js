@@ -15,7 +15,7 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     
     
         //sending data to firestore making a separate collection for each category
-        await firestore.collection(mainCategoryName).doc(`${id}`).set(categoryObj);
+        await firestore.collection("Categories").doc(`${id}`).set(categoryObj);
     
         //creating image reference in storage
     
@@ -31,4 +31,5 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     }
 
 }
+
 

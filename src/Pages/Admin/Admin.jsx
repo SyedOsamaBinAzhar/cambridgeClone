@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CategoryForm from '../../AdminComponents/CategoryForm/CategoryForm'
 import SubCategoryForm from '../../AdminComponents/SubCategoryForm/SubCategoryForm'
 
-const Admin = () => {
+import {connect} from "react-redux"
+
+const Admin = ({}) => {
+
     return (
         <div>
             <CategoryForm/>
@@ -10,5 +13,7 @@ const Admin = () => {
         </div>
     )
 }
+
+
 
 export default Admin
