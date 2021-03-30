@@ -20,7 +20,6 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
         //creating image reference in storage
     
         let storageRef = storage.ref();
-        console.log(storageRef)
         
     
         var spaceRef1 = storageRef.child(`Main Category Covers/${categoryObj.mainCategoryCover}`);
@@ -32,3 +31,4 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     }
 
 }
+
