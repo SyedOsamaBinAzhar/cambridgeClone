@@ -1,6 +1,8 @@
 import firebase from "firebase/app";//import kiya SDK se firebase
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
+
 
 
 // Your web app's Firebase configuration
@@ -18,7 +20,7 @@ var firebaseConfig = {
 
 export let auth = firebase.auth();
 export let firestore = firebase.firestore();
-
+export let storage = firebase.storage();
 
 export default firebase;
 
