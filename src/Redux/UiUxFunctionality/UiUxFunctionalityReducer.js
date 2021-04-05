@@ -5,6 +5,7 @@ var initialState={
 };
 
 var UiUxFunctionalityReducer=(state=initialState,action)=>{
+    // console.log(`actions`)
     var {type,payload}=action
     switch (type) {
         case HANDLE_LOGIN_BOX:

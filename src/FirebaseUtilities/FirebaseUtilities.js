@@ -32,4 +32,22 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
 
 }
 
+let uniqueMainCategoriesArray = []
+let mainCategoriesArray = [];
+export var filterUniqueCategories = (categoriesArray) => {
+
+
+        //storing categoryNames in another array
+        for(var i = 0; i < categoriesArray.length; i++){
+            mainCategoriesArray.push(categoriesArray[i].mainCategoryName);
+        }
+
+        //filtering unique category from the mainCategory
+        mainCategoriesArray.forEach((mainCategoryName) => {
+            if(!uniqueMainCategoriesArray.includes(mainCategoryName)){
+                uniqueMainCategoriesArray.push(mainCategoryName)
+            }
+        })
+         return uniqueMainCategoriesArray
+}
 

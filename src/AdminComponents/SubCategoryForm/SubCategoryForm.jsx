@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./SubCategoryForm.css"
-const SubCategoryForm = () => {
+import {connect} from "react-redux"
+import {fetchMainCategoriesFromFirestore} from "../../Redux/Categories/CategoriesActions"
+
+const SubCategoryForm = ({fetchMainCategoriesFromFirestore}) => {
+
+  useEffect(() => {
+    fetchMainCategoriesFromFirestore();
+    // console.log(uniqueCategories)
+
+    
+    return () => {
+    }
+  }, [])
+
+
+
     return (
         <div>
-            <form>
-                <h1>Add Category Form</h1>
+            <form className="addSubCategForm">
+                <h1>Add Product Form</h1>
                 <div className="flex">
                 <div className="dropdown">
   <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,6 +90,9 @@ const SubCategoryForm = () => {
     )
 }
 
+var actions ={
+  fetchMainCategoriesFromFirestore
 
+}
 
-export default SubCategoryForm
+export default connect(null,actions)(SubCategoryForm)
