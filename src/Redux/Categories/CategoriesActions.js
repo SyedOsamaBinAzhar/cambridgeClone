@@ -18,8 +18,6 @@ export let fetchMainCategoriesFromFirestore = () => async() => {
 
     var filteredCategoryNames =filterUniqueCategories(categoriesArray)
     
-    // console.log(filteredCategoryNames)
-    
     return ({
         type : setCategoriesInRedux,
         payload : {
