@@ -1,4 +1,4 @@
-import {firestore,storage} from "../Firebase/Firebase"
+import {firestore,serverTimestamp, storage} from "../Firebase/Firebase"
 import { v4 as uuid } from 'uuid';
 
 
@@ -53,18 +53,47 @@ export var filterUniqueCategories = (categoriesArray) => {
 }
 
 export let createANewProductInFirestore = async(productObj) => {
-console.log(productObj)
-let id = uuid();
-productObj.productId = id;
- //sending data to firestore making a separate collection for each category
- await firestore.collection("Products").doc(`${id}`).set(productObj);
+    console.log(productObj)
+    let id = uuid();
 
-      //creating image reference in storage
-    
-      let storageRef = storage.ref();
-        
-    
-      var spaceRefProductImg = storageRef.child(`Product Images/${productObj.image}`);
-      spaceRefProductImg.put(productObj.image);
+     // 1 - send file to storage and get download Url
+     var imageRef = storage.child(`products/img-${uuid()}`) 
+     //image k names same nai hone chahye kabhi
+ 
+     var fileListener = imageRef.put(productObj.productCover);
+ 
+     //fileListener.on takes 4 arguments
+     //fileListener.on(event_type,
+     //callback-fileStateoOfUploading
+     //, callback-error
+     //,callback-trigger after file upload)
+     fileListener.on('state_changed'
+     , 
+     (snapshot) => {
+         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+         progress = parseInt(progress);
+         console.log('Upload is ' + progress + '% done');
+     }
+     ,
+     (error) => {
+         console.log(error)
+     }
+     ,
+     async()=>{
+         //will trigger on completion of upload 
+         //downloadUrl ab milega
+         var downloadURL = await imageRef.getDownloadURL()
+ 
+         //2 - modify productObj with cover photo url and created At
+         productObj.productCover = downloadURL;
+         productObj.createdAt = serverTimestamp();
+         productObj.price=parseFloat(productObj.price);
+         productObj.quantity=parseInt(productObj.quantity)
+         productObj.productId = id;
 
+ 
+         //3 - create doc in firestore 
+         await firestore.collection("products").doc(`${id}`).set(productObj)
+     }
+     )
 }

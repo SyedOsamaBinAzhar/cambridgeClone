@@ -39,7 +39,7 @@ const SubCategoryForm = ({fetchMainCategoriesFromFirestore}) => {
       subCategory: subCategory,
       fabric: fabric,
       quantity: quantity,
-      image: image.name,
+      productCover: image,
       color: color,
       productId: "",
       createdAt: serverTimestamp()
