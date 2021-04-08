@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./SubCategoryForm.css"
 import {connect} from "react-redux"
 import {fetchMainCategoriesFromFirestore} from "../../Redux/Categories/CategoriesActions"
+import { createANewProductInFirestore } from '../../FirebaseUtilities/FirebaseUtilities'
+import { serverTimestamp } from '../../Firebase/Firebase'
 
 const SubCategoryForm = ({fetchMainCategoriesFromFirestore}) => {
 
@@ -38,9 +40,11 @@ const SubCategoryForm = ({fetchMainCategoriesFromFirestore}) => {
       fabric: fabric,
       quantity: quantity,
       image: image.name,
-      color: color
+      color: color,
+      productId: "",
+      createdAt: serverTimestamp()
     }
-    console.log(productObj)
+    createANewProductInFirestore(productObj)
 
   }
 

@@ -1,4 +1,5 @@
 import {firestore,storage} from "../Firebase/Firebase"
+import { v4 as uuid } from 'uuid';
 
 
 
@@ -51,6 +52,19 @@ export var filterUniqueCategories = (categoriesArray) => {
          return uniqueMainCategoriesArray
 }
 
-export let createANewProductInFirestore = () => {
+export let createANewProductInFirestore = async(productObj) => {
+console.log(productObj)
+let id = uuid();
+productObj.productId = id;
+ //sending data to firestore making a separate collection for each category
+ await firestore.collection("Products").doc(`${id}`).set(productObj);
+
+      //creating image reference in storage
     
+      let storageRef = storage.ref();
+        
+    
+      var spaceRefProductImg = storageRef.child(`Product Images/${productObj.image}`);
+      spaceRefProductImg.put(productObj.image);
+
 }

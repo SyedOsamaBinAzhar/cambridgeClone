@@ -21,6 +21,7 @@ var firebaseConfig = {
 export let auth = firebase.auth();
 export let firestore = firebase.firestore();
 export let storage = firebase.storage();
+export var serverTimestamp = () => firebase.firestore.FieldValue.serverTimestamp()
 
 export default firebase;
 

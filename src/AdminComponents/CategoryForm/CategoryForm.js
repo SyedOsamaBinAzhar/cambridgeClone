@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./CategoryForm.css";
 import {createACategoryAndSubCategoryInFirestore} from "../../FirebaseUtilities/FirebaseUtilities"
 import { v4 as uuid } from 'uuid';
+import { serverTimestamp } from '../../Firebase/Firebase';
 
 //This component has a form which contains fields for setting dynamic categories and sub-categories along with few properties in firestore
 //the data object is passed to createAcategoryfn which is present in firebaseUtilities.js
@@ -22,7 +23,7 @@ const CategoryForm = () => {
         mainCategoryCover : categoryImage,
         subCategoryName : subCategoryName,
         subCategoryCover : subCategoryImage,
-        // createdAt : new Date(),
+        createdAt : serverTimestamp(),
         id : uuid()
       }
       createACategoryAndSubCategoryInFirestore(categoryDetails)
