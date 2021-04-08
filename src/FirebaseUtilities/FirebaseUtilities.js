@@ -8,25 +8,81 @@ import { v4 as uuid } from 'uuid';
 //1) category name 2) Category Image 3) sub category name 4) sub category image
 export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     try {
-        let {mainCategoryCover,subCategoryCover,mainCategoryName,subCategoryName,id} = categoryObj;
+        let {mainCategoryCover,subCategoryCover,mainCategoryName,subCategoryName,categoryId} = categoryObj;
+        categoryObj.categoryId = uuid();
 
         //had issues in file name while sending to firestore so had to edit it over here.
-        categoryObj.mainCategoryCover = mainCategoryCover.name;
-        categoryObj.subCategoryCover = subCategoryCover.name;
+        // categoryObj.mainCategoryCover = mainCategoryCover.name;
+        // categoryObj.subCategoryCover = subCategoryCover.name;
     
     
         //sending data to firestore making a separate collection for each category
-        await firestore.collection("Categories").doc(`${id}`).set(categoryObj);
+        // await firestore.collection("Categories").doc(`${id}`).set(categoryObj);
     
         //creating image reference in storage
     
-        let storageRef = storage.ref();
+        let imageRefCategory = storage.child(`category/img-${uuid()}`);
+        let imageRefSubCategory = storage.child(`Sub category/img-${uuid()}`);
+
         
     
-        var spaceRef1 = storageRef.child(`Main Category Covers/${categoryObj.mainCategoryCover}`);
-        var spaceRef2 = storageRef.child(`Sub Category Covers/${categoryObj.subCategoryCover}`);
-        spaceRef1.put(categoryObj.mainCategoryCover);
-        spaceRef2.put(categoryObj.subCategoryCover);
+        var fileListenerCategory =  imageRefCategory.put(categoryObj.mainCategoryCover);
+        var fileListenerSubCategory =  imageRefSubCategory.put(categoryObj.subCategoryCover);
+
+        fileListenerCategory.on('state_changed'
+        , 
+        (snapshot) => {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progress = parseInt(progress);
+            console.log('Upload is ' + progress + '% done');
+        }
+        ,
+        (error) => {
+            console.log(error)
+        }
+        ,
+        async()=>{
+            //will trigger on completion of upload 
+            //downloadUrl ab milega
+            var downloadURLCategory = await imageRefCategory.getDownloadURL()
+    
+            //2 - modify productObj with cover photo url and created At
+            categoryObj.mainCategoryCover = downloadURLCategory;
+            // categoryObj.categoryId = categoryId;
+   
+    
+            //3 - create doc in firestore 
+            await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+        }
+        )
+
+        fileListenerSubCategory.on('state_changed'
+        , 
+        (snapshot) => {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progress = parseInt(progress);
+            console.log('Upload is ' + progress + '% done');
+        }
+        ,
+        (error) => {
+            console.log(error)
+        }
+        ,
+        async()=>{
+            //will trigger on completion of upload 
+            //downloadUrl ab milega
+            var downloadURLSubCategory = await imageRefSubCategory.getDownloadURL()
+    
+            //2 - modify productObj with cover photo url and created At
+            categoryObj.mainCategoryCover = downloadURLSubCategory;
+            // categoryObj.categoryId = categoryId;
+   
+    
+            //3 - create doc in firestore 
+            await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+        }
+        )
+
     } catch (error) {
         console.log(error)
     }
@@ -51,6 +107,10 @@ export var filterUniqueCategories = (categoriesArray) => {
         })
          return uniqueMainCategoriesArray
 }
+
+
+
+
 
 export let createANewProductInFirestore = async(productObj) => {
     console.log(productObj)

@@ -24,7 +24,7 @@ const CategoryForm = () => {
         subCategoryName : subCategoryName,
         subCategoryCover : subCategoryImage,
         createdAt : serverTimestamp(),
-        id : uuid()
+        categoryId : ""
       }
       createACategoryAndSubCategoryInFirestore(categoryDetails)
   }
