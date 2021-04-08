@@ -11,11 +11,3 @@ export var displayLoginComp=(loginBoxStatus)=>{
 } 
 
 
-//action for CLOSE btn
-export var closeBtnAction=(btnStatus)=>{
-    try {
-        console.log(btnStatus)
-    } catch (error) {
-        console.log(error)
-    }
-}

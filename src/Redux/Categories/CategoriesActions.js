@@ -1,4 +1,3 @@
-import { findRenderedComponentWithType } from "react-dom/test-utils";
 import {firestore} from "../../Firebase/Firebase"
 import { setCategoriesInRedux } from "./CategoriesConstants";
 import {filterUniqueCategories} from "../../FirebaseUtilities/FirebaseUtilities" 
@@ -18,11 +17,11 @@ export let fetchMainCategoriesFromFirestore = () => async() => {
 
     var filteredCategoryNames =filterUniqueCategories(categoriesArray)
     
-    return ({
+    return {
         type : setCategoriesInRedux,
         payload : {
-            uniqueMainCategoriesArray
+            filteredCategoryNames
         }
-    })
+    }
 
 }

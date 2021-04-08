@@ -1,98 +1,128 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./SubCategoryForm.css"
 import {connect} from "react-redux"
 import {fetchMainCategoriesFromFirestore} from "../../Redux/Categories/CategoriesActions"
 
 const SubCategoryForm = ({fetchMainCategoriesFromFirestore}) => {
 
-  useEffect(() => {
-    fetchMainCategoriesFromFirestore();
-    // console.log(uniqueCategories)
+  var [category,setCategory] = useState("");
+  let [subCategory,setSubCategory] = useState("");
+  let [productName,setProductName] = useState("");
+  let [price,setPrice] = useState(""); 
+  let [quantity,setQuantity] = useState(""); 
+  let [description,setDescription] = useState(""); 
+  let [color,setColor] = useState(""); 
+  let [fabric,setFabric] = useState("");
+  let [image,setImage] = useState(""); 
+
+
+
+
+  // useEffect(async () => {
+  //   var b = await fetchMainCategoriesFromFirestore();
+  //   // console.log(b)
 
     
-    return () => {
-    }
-  }, [])
+  //   return () => {
+  //   }
+  // }, [])
 
+  var formSubmitHandler = (e) => {
+    e.preventDefault();
+    var productObj = {
+      name: productName,
+      price: price,
+      description: description,
+      category: category,
+      subCategory: subCategory,
+      fabric: fabric,
+      quantity: quantity,
+      image: image.name,
+      color: color
+    }
+    console.log(productObj)
+
+  }
 
 
     return (
-        <div>
-            <form className="addSubCategForm">
+            <form className="addSubCategForm" onSubmit={formSubmitHandler}>
                 <h1>Add Product Form</h1>
                 <div className="flex">
-                <div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-   Category
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a className="dropdown-item" href="#">Action</a>
-    <a className="dropdown-item" href="#">Another action</a>
-    <a className="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+                {/* <div className="dropdown">
+ 
+  <select value={category} name="cars" id="cars">
+  <option className="btn btn-secondary" value="volvo">Formal Shirts</option>
+  <option >Casual Shirts</option>
+</select>
+</div> */}
 
-<div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Sub Category
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a className="dropdown-item" href="#">Action</a>
-    <a className="dropdown-item" href="#">Another action</a>
-    <a className="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+{/* <div className="dropdown">
+
+<select value={subCategory}>
+  <option  className="btn btn-secondary" value="volvo">check</option>
+  <option value="saab">collar</option>
+</select>
+ 
+</div> */}
                 </div>
 
 
-
                 <div className="form-group">
-    <label >Enter Product Name</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <label >Category Name</label>
+    <input value={category} onChange={(e) => setCategory(e.target.value)}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
   </div>
 
-                <div className="form-group">
+
+  <div className="form-group">
+    <label >Sub Category Name</label>
+    <input value={subCategory} onChange={(e) => setSubCategory(e.target.value)}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+  </div>
+  <div className="form-group">
+    <label >Product Name</label>
+    <input value={productName} onChange={(e) => setProductName(e.target.value)}  type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+  </div>
+
+  <div className="form-group">
     <label >Enter Price</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <input value={price} onChange={(e) => setPrice(e.target.value)}   className="form-control"  aria-describedby="emailHelp"/>
   </div>
 
 
 
   <div className="form-group">
     <label >Quantity</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <input value={quantity} onChange={(e) => setQuantity(e.target.value)}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
   </div>
 
   <div className="form-group">
     <label >Description</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <input value = {description} onChange={(e) => setDescription(e.target.value)}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
   </div>
 
   <div className="form-group">
     <label >Color</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <input value={color} onChange={(e) => setColor(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
   </div>
 
   <div className="form-group">
     <label>Fabric</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+    <input value={fabric} onChange={(e) => setFabric(e.target.value)}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
   </div>
 
-  <div className="custom-file">
+  <div >
     <label>Select PRoduct Image</label>
-  <input type="file" className="custom-file-input" id="customFile"/>
+  <input  onChange={(e) => setImage(e.target.files[0])} type="file"/>
   <label className="custom-file-label" >Choose file</label>
 </div>
 
 <button type="submit" className="btn btn-dark">Submit</button>
             </form>
-        </div>
     )
 }
 
 var actions ={
   fetchMainCategoriesFromFirestore
-
 }
 
 export default connect(null,actions)(SubCategoryForm)

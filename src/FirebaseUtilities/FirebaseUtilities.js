@@ -51,3 +51,6 @@ export var filterUniqueCategories = (categoriesArray) => {
          return uniqueMainCategoriesArray
 }
 
+export let createANewProductInFirestore = () => {
+    
+}
