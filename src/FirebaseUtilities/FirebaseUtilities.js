@@ -10,6 +10,7 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     try {
         let {mainCategoryCover,subCategoryCover,mainCategoryName,subCategoryName,categoryId} = categoryObj;
         categoryObj.categoryId = uuid();
+        // console.log(categoryObj)
 
         //had issues in file name while sending to firestore so had to edit it over here.
         // categoryObj.mainCategoryCover = mainCategoryCover.name;
@@ -51,10 +52,15 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
             // categoryObj.categoryId = categoryId;
    
     
+        // console.log(`categoryObj1 = ${categoryObj}`)
+        console.log(categoryObj)
+
             //3 - create doc in firestore 
-            await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+            // await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
         }
         )
+
+        
 
         fileListenerSubCategory.on('state_changed'
         , 
@@ -70,24 +76,39 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
         ,
         async()=>{
             //will trigger on completion of upload 
-            //downloadUrl ab milega
+            //get downloadUrl 
             var downloadURLSubCategory = await imageRefSubCategory.getDownloadURL()
-    
+
             //2 - modify productObj with cover photo url and created At
-            categoryObj.mainCategoryCover = downloadURLSubCategory;
+            categoryObj.subCategoryCover = downloadURLSubCategory;
+
             // categoryObj.categoryId = categoryId;
    
     
             //3 - create doc in firestore 
+            // console.log(categoryObj.categoryId)
+           setTimeout(async() => {
             await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+           }, 3000);
+        // console.log(`categoryObj = ${categoryObj}`)
+        // await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+        
+
+            
         }
         )
+   
 
     } catch (error) {
         console.log(error)
     }
 
 }
+
+
+
+
+
 
 let uniqueMainCategoriesArray = []
 let mainCategoriesArray = [];
@@ -113,7 +134,7 @@ export var filterUniqueCategories = (categoriesArray) => {
 
 
 export let createANewProductInFirestore = async(productObj) => {
-    console.log(productObj)
+    // console.log(productObj)
     let id = uuid();
 
      // 1 - send file to storage and get download Url
@@ -153,6 +174,7 @@ export let createANewProductInFirestore = async(productObj) => {
 
  
          //3 - create doc in firestore 
+        // console.log(productObj)
          await firestore.collection("products").doc(`${id}`).set(productObj)
      }
      )
