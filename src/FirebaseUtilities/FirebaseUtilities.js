@@ -10,17 +10,8 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     try {
         let {mainCategoryCover,subCategoryCover,mainCategoryName,subCategoryName,categoryId} = categoryObj;
         categoryObj.categoryId = uuid();
-        // console.log(categoryObj)
+     
 
-        //had issues in file name while sending to firestore so had to edit it over here.
-        // categoryObj.mainCategoryCover = mainCategoryCover.name;
-        // categoryObj.subCategoryCover = subCategoryCover.name;
-    
-    
-        //sending data to firestore making a separate collection for each category
-        // await firestore.collection("Categories").doc(`${id}`).set(categoryObj);
-    
-        //creating image reference in storage
     
         let imageRefCategory = storage.child(`category/img-${uuid()}`);
         let imageRefSubCategory = storage.child(`Sub category/img-${uuid()}`);
@@ -107,9 +98,6 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
 
 
 
-
-
-
 let uniqueMainCategoriesArray = []
 let mainCategoriesArray = [];
 export var filterUniqueCategories = (categoriesArray) => {
@@ -128,9 +116,6 @@ export var filterUniqueCategories = (categoriesArray) => {
         })
          return uniqueMainCategoriesArray
 }
-
-
-
 
 
 export let createANewProductInFirestore = async(productObj) => {
