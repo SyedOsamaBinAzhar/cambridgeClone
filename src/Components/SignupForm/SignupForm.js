@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import "./SignupForm.css"
 import {createUser} from "../../Redux/Auth/AuthActions"
+import { serverTimestamp } from '../../Firebase/Firebase'
 const SignupForm = () => {
 
     const [firstName, setFirstName] = useState("")
@@ -15,7 +16,9 @@ const SignupForm = () => {
             firstName,
             lastName,
             email,
-            password
+            password,
+            userId: "",
+            createdAt: ""
         }
         createUser(userDetailsObj)
     }

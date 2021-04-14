@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import "./CategoryForm.css";
 import {createACategoryAndSubCategoryInFirestore} from "../../FirebaseUtilities/FirebaseUtilities"
-import { v4 as uuid } from 'uuid';
 import { serverTimestamp } from '../../Firebase/Firebase';
 
 //This component has a form which contains fields for setting dynamic categories and sub-categories along with few properties in firestore
