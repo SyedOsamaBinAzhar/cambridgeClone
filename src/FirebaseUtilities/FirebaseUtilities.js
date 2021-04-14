@@ -11,22 +11,22 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
         let {mainCategoryCover,subCategoryCover,mainCategoryName,subCategoryName,categoryId} = categoryObj;
         categoryObj.categoryId = uuid();
      
-
-    
+        //creating reference
         let imageRefCategory = storage.child(`category/img-${uuid()}`);
         let imageRefSubCategory = storage.child(`Sub category/img-${uuid()}`);
 
         
-    
+        //activating listener
         var fileListenerCategory =  imageRefCategory.put(categoryObj.mainCategoryCover);
         var fileListenerSubCategory =  imageRefSubCategory.put(categoryObj.subCategoryCover);
 
+        //Image upload listener1
         fileListenerCategory.on('state_changed'
         , 
-        (snapshot) => {
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        async(snapshot) => {
+            var progress =await  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             progress = parseInt(progress);
-            console.log('Upload is ' + progress + '% done');
+            console.log('Upload is ' + progress + '% doneeee');
         }
         ,
         (error) => {
@@ -40,23 +40,19 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
     
             //2 - modify productObj with cover photo url and created At
             categoryObj.mainCategoryCover = downloadURLCategory;
-            // categoryObj.categoryId = categoryId;
-   
-    
-        // console.log(`categoryObj1 = ${categoryObj}`)
-        console.log(categoryObj)
 
-            //3 - create doc in firestore 
-            // await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
+            //putting data in firestore after both the images are uploaded 
+            //second image listener doesnt satisfy images upload thats why sending data to firestore in this listener.
+            await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
         }
         )
 
         
-
+        //Image upload listener2
         fileListenerSubCategory.on('state_changed'
         , 
-        (snapshot) => {
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        async(snapshot) => {
+            var progress = await (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             progress = parseInt(progress);
             console.log('Upload is ' + progress + '% done');
         }
@@ -72,20 +68,6 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
 
             //2 - modify productObj with cover photo url and created At
             categoryObj.subCategoryCover = downloadURLSubCategory;
-
-            // categoryObj.categoryId = categoryId;
-   
-    
-            //3 - create doc in firestore 
-            // console.log(categoryObj.categoryId)
-           setTimeout(async() => {
-            await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
-           }, 3000);
-        // console.log(`categoryObj = ${categoryObj}`)
-        // await firestore.collection("Categories").doc(`${categoryObj.categoryId}`).set(categoryObj)
-        
-
-            
         }
         )
    
