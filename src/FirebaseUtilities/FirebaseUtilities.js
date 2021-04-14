@@ -34,6 +34,8 @@ export let createACategoryAndSubCategoryInFirestore = async(categoryObj) => {
         }
         ,
         async()=>{
+            //this will run in the end thats why sending data to firestore in this async fn
+
             //will trigger on completion of upload 
             //downloadUrl ab milega
             var downloadURLCategory = await imageRefCategory.getDownloadURL()
@@ -84,65 +86,71 @@ let uniqueMainCategoriesArray = []
 let mainCategoriesArray = [];
 export var filterUniqueCategories = (categoriesArray) => {
 
-
-        //storing categoryNames in another array
-        for(var i = 0; i < categoriesArray.length; i++){
-            mainCategoriesArray.push(categoriesArray[i].mainCategoryName);
-        }
-
-        //filtering unique category from the mainCategory
-        mainCategoriesArray.forEach((mainCategoryName) => {
-            if(!uniqueMainCategoriesArray.includes(mainCategoryName)){
-                uniqueMainCategoriesArray.push(mainCategoryName)
+try {
+            //storing categoryNames in another array
+            for(var i = 0; i < categoriesArray.length; i++){
+                mainCategoriesArray.push(categoriesArray[i].mainCategoryName);
             }
-        })
-         return uniqueMainCategoriesArray
+    
+            //filtering unique category from the mainCategory
+            mainCategoriesArray.forEach((mainCategoryName) => {
+                if(!uniqueMainCategoriesArray.includes(mainCategoryName)){
+                    uniqueMainCategoriesArray.push(mainCategoryName)
+                }
+            })
+             return uniqueMainCategoriesArray
+} catch (error) {
+    console.log(error)
+}
 }
 
 
 export let createANewProductInFirestore = async(productObj) => {
-    // console.log(productObj)
+  try {
+        // console.log(productObj)
     let id = uuid();
 
-     // 1 - send file to storage and get download Url
-     var imageRef = storage.child(`products/img-${uuid()}`) 
-     //image k names same nai hone chahye kabhi
- 
-     var fileListener = imageRef.put(productObj.productCover);
- 
-     //fileListener.on takes 4 arguments
-     //fileListener.on(event_type,
-     //callback-fileStateoOfUploading
-     //, callback-error
-     //,callback-trigger after file upload)
-     fileListener.on('state_changed'
-     , 
-     (snapshot) => {
-         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-         progress = parseInt(progress);
-         console.log('Upload is ' + progress + '% done');
-     }
-     ,
-     (error) => {
-         console.log(error)
-     }
-     ,
-     async()=>{
-         //will trigger on completion of upload 
-         //downloadUrl ab milega
-         var downloadURL = await imageRef.getDownloadURL()
- 
-         //2 - modify productObj with cover photo url and created At
-         productObj.productCover = downloadURL;
-         productObj.createdAt = serverTimestamp();
-         productObj.price=parseFloat(productObj.price);
-         productObj.quantity=parseInt(productObj.quantity)
-         productObj.productId = id;
+    // 1 - send file to storage and get download Url
+    var imageRef = storage.child(`products/img-${uuid()}`) 
+    //image k names same nai hone chahye kabhi
 
- 
-         //3 - create doc in firestore 
-        // console.log(productObj)
-         await firestore.collection("products").doc(`${id}`).set(productObj)
-     }
-     )
+    var fileListener = imageRef.put(productObj.productCover);
+
+    //fileListener.on takes 4 arguments
+    //fileListener.on(event_type,
+    //callback-fileStateoOfUploading
+    //, callback-error
+    //,callback-trigger after file upload)
+    fileListener.on('state_changed'
+    , 
+    (snapshot) => {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progress = parseInt(progress);
+        console.log('Upload is ' + progress + '% done');
+    }
+    ,
+    (error) => {
+        console.log(error)
+    }
+    ,
+    async()=>{
+        //will trigger on completion of upload 
+        //downloadUrl ab milega
+        var downloadURL = await imageRef.getDownloadURL()
+
+        //2 - modify productObj with cover photo url and created At
+        productObj.productCover = downloadURL;
+        productObj.createdAt = serverTimestamp();
+        productObj.price=parseFloat(productObj.price);
+        productObj.quantity=parseInt(productObj.quantity)
+        productObj.productId = id;
+
+        //3 - create doc in firestore 
+       // console.log(productObj)
+        await firestore.collection("products").doc(`${id}`).set(productObj)
+    }
+    )
+  } catch (error) {
+      console.log(error)
+  }
 }
