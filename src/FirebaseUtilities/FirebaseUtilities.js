@@ -154,3 +154,4 @@ export let createANewProductInFirestore = async(productObj) => {
       console.log(error)
   }
 }
+

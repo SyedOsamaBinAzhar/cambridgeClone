@@ -17,3 +17,9 @@ await auth.createUserWithEmailAndPassword(email,password);
 await firestore.collection("Users").doc(`${userInfo.userId}`).set(userInfo)
 
 }
+
+export let loginUser = async({email,password}) => {
+//sigining in user
+await auth.signInWithEmailAndPassword(email, password);
+
+}

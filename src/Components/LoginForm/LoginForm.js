@@ -1,18 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./LoginForm.css"
 
 import { Link } from 'react-router-dom'
 import {connect} from "react-redux"
+import { loginUser } from '../../Redux/Auth/AuthActions'
 
-const LoginForm = (props) => {
+const LoginForm = ({loginUser}) => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    let handleLoginForm = (e) => {
+        e.preventDefault();
+        var userLoginInfo = {
+            email,password
+        }
+        loginUser(userLoginInfo)
+
+    }
 
     return (
         <div className="loginFormDiv">
-            <form>
+            <form onSubmit={handleLoginForm}>
             <p>Email Address</p>
-            <input className="inputFieldsStyling" type="text" placeholder="Enter Email"/>
+            <input value={email} onChange={(e) => {setEmail(e.target.value)}} className="inputFieldsStyling" type="text" placeholder="Enter Email"/>
             <p>Password</p>
-            <input className="inputFieldsStyling" type="password" placeholder="Enter Password"/>
+            <input value={password} onChange={(e) => {setPassword(e.target.value)}} className="inputFieldsStyling" type="password" placeholder="Enter Password"/>
             <button className="loginFormBtnsStyling  cursorPointer loginBtn">LOGIN</button>
             <h4 className="forgotYourPassword cursorPointer">Forgot Your Password?</h4>
             <button className="loginFormBtnsStyling cursorPointer createAnAccount"><Link to='/page/Signup' style={{ textDecoration: 'none'}}>CREATE AN ACCOUNT</Link></button>
@@ -23,6 +36,8 @@ const LoginForm = (props) => {
     )
 }
 
+var actions = {
+    loginUser
+}
 
-
-export default LoginForm
+export default connect(null,actions) (LoginForm)
