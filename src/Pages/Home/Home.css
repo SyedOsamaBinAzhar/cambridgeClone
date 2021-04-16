@@ -5,7 +5,7 @@
     display: grid;
     position: relative;
     grid-template-columns: minmax(0rem,1fr) minmax(min-content,1920px) minmax(0rem,1fr);
-    grid-template-rows: 5vh 10vh 6vh 85vh 60vh;
+    grid-template-rows: 5vh 10vh 6vh 85vh 125vh 60vh;
     /* background-color: chocolate; */
     box-sizing: border-box;
     padding-left: 2vw;
@@ -14,6 +14,7 @@
                         ". iconNavbar ."
                         ". Navbar ."
                         ". homeNewsImage ."
+                        ". displayCategoriesDiv ."
                         ". footerRow .";
 }
 .headerDiv{
@@ -44,7 +45,7 @@
 }
 .footerRow{
     grid-area: footerRow;
-    background-color: brown;
+    /* background-color: brown; */
 }
 
 .loginForm{
@@ -143,4 +144,35 @@
 .continueShoppingBtn:hover{
     color: white;
     background-color: black;
+}
+
+.displayCategoriesDiv{
+    grid-area: displayCategoriesDiv;
+    /* background-color: aqua; */
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "categrow1" 
+                        "categrow2";
+}
+.categrow1{
+    grid-area: categrow1;
+    /* background-color: aquamarine; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-gap: 20px; */
+    grid-template-areas: "categ1 categ2";
+    grid-column-gap: 25px;
+}
+.categ1{
+    grid-area: categ1;
+    /* background-color: blue; */
+
+}
+.categ2{
+    grid-area: categ2;
+    background-color: brown;
+}
+.categrow2{
+    grid-area: categrow2;
+    background-color: red;
 }

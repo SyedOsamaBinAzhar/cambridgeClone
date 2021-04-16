@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import {openCartDiv} from "../../Redux/CartDivState/CartDivStateActions"
 import {displayLoginComp} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 import Footer from '../../Components/Footer/Footer';
+import HorizontalCategoryCard from '../../Components/HorizontalCategoryCard/HorizontalCategoryCard';
 // import {closeBtnAction} from "../../Redux/UiUxFunctionality/UiUxFunctionalityActions"
 
 const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) => {
@@ -78,6 +79,16 @@ const Home = ({openCartDiv,openLoginBox,cartDivStateReducer,displayLoginComp}) =
 
             <div className="homeNewsImage">
                 <HomeNewsContent/>
+            </div>
+
+            <div className="displayCategoriesDiv">
+                <div className="categrow1">
+                    <div className="categ1"><HorizontalCategoryCard/></div>
+                    <div className="categ2"><HorizontalCategoryCard/></div>
+
+                </div>
+                <div className="categrow2"></div>
+
             </div>
             
             <div className="footerRow">
