@@ -1,10 +1,10 @@
 .homeCoverImage{
     height: 100%;
     width: 100%;
-    background-color: aquamarine;
+    margin-top: 20px;
 }
 .coverImage{
     height: 100%;
     width: 100%;
-
+    border: none;
 }

@@ -38,14 +38,12 @@
 }
 .Navbar{
     grid-area: Navbar;
-    /* background-color: red; */
 }
 .homeNewsImage{
     grid-area: homeNewsImage;
 }
 .footerRow{
     grid-area: footerRow;
-    /* background-color: brown; */
 }
 
 .loginForm{
@@ -86,7 +84,6 @@
 }
 .loginContent{
     grid-area: loginContent;
-    /* background-color: brown; */
     background-color: #fff;
 
 }
@@ -105,7 +102,6 @@
 
 .headingRow{
     grid-area: headingRow;
-    /* background-color: burlywood; */
 }
 .headingRow button{
     position: absolute;
@@ -127,7 +123,6 @@
 }
 .cartContentRow{
     grid-area: cartContentRow;
-    /* background-color: brown; */
 }
 .continueShoppingBtn{
     width: 25rem;
@@ -147,8 +142,8 @@
 }
 
 .displayCategoriesDiv{
+    margin-top: 40px;
     grid-area: displayCategoriesDiv;
-    /* background-color: aqua; */
     display: grid;
     grid-template-rows: 50% 50%;
     grid-template-areas: "categrow1" 
@@ -156,16 +151,13 @@
 }
 .categrow1{
     grid-area: categrow1;
-    /* background-color: aquamarine; */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* grid-gap: 20px; */
     grid-template-areas: "categ1 categ2";
     grid-column-gap: 25px;
 }
 .categ1{
     grid-area: categ1;
-    /* background-color: blue; */
 
 }
 .categ2{
